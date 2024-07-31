@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <title>干支チェッカー</title>
+    <style>
+      .eto_checker {
+        text-align: center;
+      }
+
+      form {
+        font-size: 20px;
+      }
+
+      .inputted_year {
+        padding: 10px;
+        text-align: center;
+      }
+
+      .eto_checker-btn {
+        padding: 10px 35px;
+        margin-top: 20px;
+        color: #fff;
+        background-color: #3fcaff;
+        border: none;
+      }
+
+      .eto_checker-btn:hover {
+        opacity: 0.4;
+        transition: 2s;
+      }
+
+      .eto_checker-result_txt {
+        font-size: 30px;
+        font-weight: bold;
+        margin-top: 30px;
+        margin-bottom: 60px;
+      }
+
+      .eto_checker-result_img {
+        width: 250px;
+        margin: 0 auto;
+      }
+
+      .eto_checker-result_img img {
+        width: 100%;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="eto_checker">
+      <h1 class="eto_checker-ttl">干支チェッカー</h1>
+      <form action="" method="">
+        西暦
+        <input type="number" name="inputted_year" class="inputted_year" /> 年
+      </form>
+      <button class="eto_checker-btn" onClick="checkEto()">
+        この年の干支をチェック！
+      </button>
+      <div class="eto_checker-result_txt"></div>
+      <div class="eto_checker-result_img"></div>
+    </div>
+
+    <script>
+      function checkEto() {
+        let inputted_year = document.querySelector(".inputted_year").value;
+        let eto_checker_result_txt = document.querySelector(
+          ".eto_checker-result_txt"
+        );
+        let eto_checker_result_img = document.querySelector(
+          ".eto_checker-result_img"
+        );
+
+        let eto_array = [
+          "申",
+          "酉",
+          "戌",
+          "亥",
+          "子",
+          "丑",
+          "寅",
+          "卯",
+          "辰",
+          "巳",
+          "午",
+          "未",
+        ];
+        let eto_img_array = [
+          "eto9.png",
+          "eto10.png",
+          "eto11.png",
+          "eto12.png",
+          "eto1.png",
+          "eto2.png",
+          "eto3.png",
+          "eto4.png",
+          "eto5.png",
+          "eto6.png",
+          "eto7.png",
+          "eto8.png",
+        ];
+
+        if (inputted_year == "") {
+          eto_checker_result_txt.textContent = "年数が入力されていません。";
+          eto_checker_result_img.textContent = "";
+        } else if (inputted_year < 0) {
+          eto_checker_result_txt.textContent =
+            "年数が正しく入力されていません。";
+          eto_checker_result_img.textContent = "";
+        } else {
+          let eto_num = inputted_year % 12;
+
+          eto_checker_result_txt.textContent = `${inputted_year}年は${eto_array[eto_num]}年です。`;
+          eto_checker_result_img.textContent = "";
+          let content = `<img src="img/"eto${eto_img_array[eto_num]}">`;
+          eto_checker_result_img.insertAdjacentHTML("beforeend", content);
+        }
+      }
+    </script>
+  </body>
+</html>
